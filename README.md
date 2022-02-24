@@ -1,5 +1,5 @@
 ### React_Redux CRUD
-혼자. 감격해서 firebase연결 전에 올림ㅋㅋㅋㅋ 앞으로 계속 update할 
+혼자. 감격해서 firebase연결 전에 올림ㅋㅋㅋㅋ 앞으로 계속 update할 리액트연습파일
 
 
 ![image](https://user-images.githubusercontent.com/85012454/155554950-2d799a4b-52d0-4eca-a861-9817ff7dbb39.png)
