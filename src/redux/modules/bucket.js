@@ -4,6 +4,7 @@
 const CREATE = 'bucket/CREATE';
 const UPDATE = 'bucket/UPDATE';
 const REMOVE = 'bucket/REMOVE';
+const CHECKED = 'bucket/CHECKED';
 
 
 
@@ -16,6 +17,9 @@ export function updateBucket(bucket_index, bucket) {
 }
 export function removeBucket(bucket_index) {
   return { type: REMOVE, bucket_index };
+}
+export function checkedBucket(bucket_index) {
+  return { type: CHECKED, bucket_index };
 }
 
 
@@ -35,7 +39,7 @@ const initialState = {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "bucket/CREATE" : {
-      console.log(state, action)
+      // console.log(state, action)
       const new_bucket_list = [...state.list, {text:action.bucket, check:false}];
       return { list : new_bucket_list};
     }
@@ -55,7 +59,7 @@ export default function reducer(state = initialState, action = {}) {
     }
 
     case "bucket/UPDATE" : {
-      console.log(state, action)
+      // console.log(state, action)
       const new_bucket_list = state.list.map((l, idx)=> {
         // console.log(l,idx)
         // console.log(l, action.bucket)
@@ -64,6 +68,21 @@ export default function reducer(state = initialState, action = {}) {
       })
       // console.log(new_bucket_list)
       return {...state, list : new_bucket_list};
+    }
+
+    case "bucket/CHECKED" : {
+      console.log(state, action)
+
+      const new_bucket_list = state.list.map((l, idx)=> {
+        console.log(l, idx, action.bucket_index)
+        if (parseInt(action.bucket_index) === idx){
+          return {...l, check: true}
+        }else{
+          return l
+        }
+      })
+      console.log(new_bucket_list)
+      return {list : new_bucket_list};
     }
     default: return state;
     }

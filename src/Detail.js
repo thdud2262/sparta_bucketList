@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
-import { removeBucket } from "./redux/modules/bucket";
+import { removeBucket, checkedBucket } from "./redux/modules/bucket";
 
 const Detail = (props) => {
 
@@ -21,6 +21,11 @@ const Detail = (props) => {
     console.log('수정')
     history.push(`/update/${idx}`) 
   }
+  const checked=()=>{
+    console.log('완료')
+    dispatch(checkedBucket(idx))
+    history.push('/') 
+  }
 
   return(
     <React.Fragment>
@@ -29,6 +34,7 @@ const Detail = (props) => {
         {/* <MainButton onClick={()=>{ history.push('/') }}>메인으로</MainButton> */}
       </Box>
       <BtnBox>
+        <Button onClick={checked}>완료</Button>
         <Button onClick={delBtn}>삭제</Button>
         <Button onClick={update}>수정</Button>
       </BtnBox>
