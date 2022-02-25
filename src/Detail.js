@@ -18,14 +18,14 @@ const Detail = (props) => {
     history.push('/') 
   }
   const update=()=>{
-    console.log('삭제')
+    console.log('수정')
     history.push(`/update/${idx}`) 
   }
 
   return(
     <React.Fragment>
       <Box>
-        <D_Title>{bucket_data[idx]}</D_Title>
+        <D_Title>{bucket_data[idx].text}</D_Title>
         {/* <MainButton onClick={()=>{ history.push('/') }}>메인으로</MainButton> */}
       </Box>
       <BtnBox>

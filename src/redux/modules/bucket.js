@@ -9,7 +9,7 @@ const REMOVE = 'bucket/REMOVE';
 
 // Action Creators
 export function createBucket(bucket) {
-  return { type: CREATE, bucket };
+  return { type: CREATE, bucket:bucket };
 }
 export function updateBucket(bucket_index, bucket) {
   return { type: UPDATE, bucket_index, bucket };
@@ -21,7 +21,12 @@ export function removeBucket(bucket_index) {
 
 //initialState
 const initialState = {
-  list : ['영화보기', '리액트프로젝트 만들기', '책읽기'],
+  list : [
+    {text: '영화보기', check: false},
+    {text: '리액트프로젝트 만들기', check: false},
+    {text: '책읽기', check: false},
+  ],
+  // list : ['영화보기', '리액트프로젝트 만들기', '책읽기'],
 }
 
 
@@ -31,7 +36,7 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "bucket/CREATE" : {
       console.log(state, action)
-      const new_bucket_list = [...state.list, action.bucket];
+      const new_bucket_list = [...state.list, {text:action.bucket, check:false}];
       return { list : new_bucket_list};
     }
     case "bucket/REMOVE" : {
@@ -48,13 +53,14 @@ export default function reducer(state = initialState, action = {}) {
       })
       return { list : new_bucket_list };
     }
+
     case "bucket/UPDATE" : {
       console.log(state, action)
       const new_bucket_list = state.list.map((l, idx)=> {
         // console.log(l,idx)
         // console.log(l, action.bucket)
         // 리덕스에 있는 데이터랑 수정할 데이터를 비교함!으하하핳
-        return idx === parseInt(action.bucket_index) ? action.bucket : l
+        return idx === parseInt(action.bucket_index) ? {text:action.bucket, check:false} : l
       })
       // console.log(new_bucket_list)
       return {...state, list : new_bucket_list};

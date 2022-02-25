@@ -20,7 +20,7 @@ const BucketList = (props) => {
                 return (
                     <div className="bucketlist" key={ i } 
                         onClick={()=>{ history.push(`/detail/${i}`)}}
-                    > { B } </div>
+                    > { B.text } </div>
                 )
             })}
         </div>
