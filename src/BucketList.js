@@ -7,7 +7,7 @@ import './BucketList.css';
 
 const BucketList = (props) => {
     const bucket = useSelector((state)=> state.bucket.list)
-    console.log(bucket)
+    // console.log(bucket)
 
     const history = useHistory();
     const my_wrap = React.useRef(null);
@@ -17,10 +17,11 @@ const BucketList = (props) => {
     return ( 
         <div ref={my_wrap}>
             {bucket.map((B,i) =>{
+                console.log(B.text)
                 return (
                     <div className="bucketlist" key={ i } 
                         onClick={()=>{ history.push(`/detail/${i}`)}}
-                    > { B } </div>
+                    > { B.text } </div>
                 )
             })}
         </div>

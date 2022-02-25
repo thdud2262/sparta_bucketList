@@ -11,7 +11,7 @@ const Update = (props) => {
   const params = useParams()
   // console.log(params)
   const idx = params.index
-  const inputValue=bucket_data[idx]
+  const inputValue=bucket_data[idx].text
 
 
   const updateText = React.useRef(null)
