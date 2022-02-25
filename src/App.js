@@ -9,6 +9,7 @@ import Detail from './Detail';
 import BucketList from './BucketList';
 import NotPage from './NotPage';
 import Update from './Update';
+import Progress from './Progress';
 
 
 function App(){
@@ -33,6 +34,7 @@ function App(){
           </InputBox>
 
           <Contain>
+            <Progress/>
             <Title>BucketList</Title>
               <Switch>
                 <Route path='/' exact>
@@ -49,7 +51,9 @@ function App(){
                 </Route>
               </Switch>
           </Contain>
-
+          <button onClick={()=>{
+            window.scrollTo({top:0, left:0, behavior:"smooth"})
+          }}>위로가기</button>
         </Apps>
     </React.Fragment>
   );
