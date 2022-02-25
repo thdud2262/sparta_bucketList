@@ -7,12 +7,10 @@ import { removeBucket } from "./redux/modules/bucket";
 const Detail = (props) => {
 
   const bucket_data = useSelector((state)=> state.bucket.list)
-  console.log(bucket_data)
   const dispatch = useDispatch() 
   const history = useHistory()
   const params = useParams()
   const idx = params.index
-  console.log(bucket_data[idx].text)
 
   const delBtn=()=>{
     console.log('삭제')
@@ -20,22 +18,17 @@ const Detail = (props) => {
     history.push('/') 
   }
   const update=()=>{
-    console.log('수정')
-    history.push(`/update/${idx}`) 
-  }
-  const complete=()=>{
-    console.log('완료')
+    console.log('삭제')
     history.push(`/update/${idx}`) 
   }
 
   return(
     <React.Fragment>
       <Box>
-        <D_Title>{bucket_data[idx].text}</D_Title>
+        <D_Title>{bucket_data[idx]}</D_Title>
         {/* <MainButton onClick={()=>{ history.push('/') }}>메인으로</MainButton> */}
       </Box>
       <BtnBox>
-        <Button coClick={complete}>완료</Button>
         <Button onClick={delBtn}>삭제</Button>
         <Button onClick={update}>수정</Button>
       </BtnBox>
@@ -74,8 +67,8 @@ const BtnBox = styled.div`
   text-align: center;
 `;
 const Button = styled.button`
-  width : 70px;
-  margin: 0 5px;
+  width : 50px;
+  margin: 0 10px;
   border: none;
   background: white;
   padding: 10px 5px;
