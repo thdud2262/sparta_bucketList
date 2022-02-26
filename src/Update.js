@@ -2,26 +2,26 @@ import React from "react"
 import styled from "styled-components";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { updateBucket } from "./redux/modules/bucket";
+import { updateBucketFB, loadBucketFB } from "./redux/modules/bucket";
 
 const Update = (props) => {
   const bucket_data = useSelector((state)=> state.bucket.list)
+
+  console.log(bucket_data)
   const dispatch = useDispatch() 
   const history = useHistory()
   const params = useParams()
   // console.log(params)
   const idx = params.index
-  const inputValue=bucket_data[idx].text
-
+  const inputValue = bucket_data[idx].text
 
   const updateText = React.useRef(null)
-
 
   const complete=()=>{
     console.log('수정완료')
     let updateValue = updateText.current.value
     // console.log(updateValue)
-    dispatch(updateBucket(idx,updateValue))
+    dispatch(updateBucketFB(bucket_data[idx].id,updateValue))
     history.push('/')
   }
   

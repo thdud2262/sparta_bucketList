@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
-import { removeBucket, checkedBucket } from "./redux/modules/bucket";
+import { removeBucketFB, checkBucketFB } from "./redux/modules/bucket";
 
 const Detail = (props) => {
 
@@ -13,8 +13,9 @@ const Detail = (props) => {
   const idx = params.index
 
   const delBtn=()=>{
-    console.log('삭제')
-    dispatch(removeBucket(idx))
+    if (window.confirm('데이터를 삭제합니다')){
+      dispatch(removeBucketFB(bucket_data[idx].id))
+    }
     history.push('/') 
   }
   const update=()=>{
@@ -22,15 +23,16 @@ const Detail = (props) => {
     history.push(`/update/${idx}`) 
   }
   const checked=()=>{
-    console.log('완료')
-    dispatch(checkedBucket(idx))
+    // console.log('완료')
+    // console.log(bucket_data[idx].id)
+    dispatch(checkBucketFB(bucket_data[idx].id))
     history.push('/') 
   }
 
   return(
     <React.Fragment>
       <Box>
-        <D_Title>{bucket_data[idx].text}</D_Title>
+        <D_Title>{bucket_data[idx] ? bucket_data[idx].text : ""}</D_Title>
         {/* <MainButton onClick={()=>{ history.push('/') }}>메인으로</MainButton> */}
       </Box>
       <BtnBox>

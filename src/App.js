@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { createBucket } from './redux/modules/bucket';
+import { createBucketFB, loadBucketFB } from './redux/modules/bucket';
+import { db } from './firebase'
+import { collection, getDoc, getDocs, addDoc, updateDoc, doc, deleteDoc } from "firebase/firestore"
 
 import styled from "styled-components";
 
@@ -11,17 +13,29 @@ import NotPage from './NotPage';
 import Update from './Update';
 import Progress from './Progress';
 
-
+ 
 function App(){
   const dispatch = useDispatch();
   // const [list, setList] = useState (['영화보기', '리액트프로젝트 만들기', '책읽기'])
+
+  React.useEffect(async()=>{
+    // console.log(db) //firebase안에 데이터를 확인해봄
+    dispatch(loadBucketFB())
+
+  },[])
+  
   const text = React.useRef(null)
 
   const add = () => {
     // console.log(text.current.value)
     const bucket = text.current.value
     // setList([...list, text.current.value ]
-    bucket===""? window.alert('버킷리스트를 입력해주세요') : dispatch(createBucket(bucket));
+    if (bucket===""){
+      window.alert('버킷리스트를 입력해주세요')
+    } else {
+      // dispatch(createBucket(bucket));
+      dispatch(createBucketFB({text:bucket, check:false}));
+    }
     text.current.value = ""
   }
 

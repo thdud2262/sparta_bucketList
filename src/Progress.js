@@ -11,8 +11,8 @@ const Progress = (props) => {
   let count = 0;
   bucket_list.map((B, idx) => {
     if(B.check){ count ++}})
-  console.log(count)
-  console.log(Math.round(count/(bucket_list.length)*100)+"%")
+  // console.log(count)
+  // console.log(Math.round(count/(bucket_list.length)*100)+"%")
 
   return (
     <>
